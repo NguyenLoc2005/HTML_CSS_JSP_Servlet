@@ -26,7 +26,7 @@ public class BooksDAO {
 				Books books = new Books();
 				//Cài đặt thuộc tính
 				books.setId(rs.getInt("id"));
-				books.setTitle(rs.getString("title"));
+				books.setName(rs.getString("title"));
 				books.setAuthor(rs.getString("author"));	
 				//Thêm vào
 				booksList.add(books);
@@ -46,7 +46,7 @@ public class BooksDAO {
 			Connection conn = ConnectDb.ConnectDatabase();
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			//Cài đặt thuộc tính
-			stmt.setString(1, books.getTitle());
+			stmt.setString(1, books.getName());
 			stmt.setString(2, books.getAuthor());
 			stmt.setInt(3, books.getPrice());
 			stmt.setString(4, books.getImagePath());
@@ -74,7 +74,7 @@ public class BooksDAO {
 			Connection conn = ConnectDb.ConnectDatabase();
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			//Cài đặt thuộc tính
-			stmt.setString(0, books.getTitle());
+			stmt.setString(0, books.getName());
 			stmt.setString(1, books.getAuthor());
 			stmt.setInt(2, books.getPrice());
 			stmt.setString(3, books.getImagePath());

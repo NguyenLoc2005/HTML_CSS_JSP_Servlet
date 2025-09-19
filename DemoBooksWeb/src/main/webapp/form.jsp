@@ -6,28 +6,28 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title><%= isEdit ? "Sửa sách" : "Thêm sách" %></title>
+<title><%= isEdit ? "Sua sach" : "Them sach" %></title>
 </head>
 <body>
-    <h2><%= isEdit ? "Sửa sách" : "Thêm sách" %></h2>
+    <h2><%= isEdit ? "Sua sach" : "Them sach" %></h2>
 
-    <form action="books" method="post">
+    <form action="books" method="POST">
         <c:if test="${books != null}">
             <input type="hidden" name="id" value="${books.id}">
         </c:if>
 
-        Tên sách:<br>
-        <input type="text" name="title" value="${books.title}" required><br><br>
-        Tác giả:<br>
+        Ten sach:<br>
+        <input type="text" name="name" value="${books.name}" required><br><br>
+        Tac gia:<br>
         <input type="text" name="author" value="${books.author}" required><br><br>
-        Giá:<br>
+        Gia:<br>
         <input type="text" name="price" value="${books.price}" required><br><br>
-        Link ảnh:<br>
+        Xem hinh anh:<br>
         <input type="text" name="imagePath" value="${books.imagePath}" required><br><br>
 
-        <input type="submit" value="<%= isEdit ? "Cập nhật" : "Tạo mới" %>">
+        <input type="submit" value="<%= isEdit ? "Cap nhat" : "Tao moi" %>">
     </form>
 
-    <a href="books">Quay lại danh sách</a>
+    <a href="books">Quay lai danh sach Sach</a>
 </body>
 </html>

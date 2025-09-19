@@ -14,21 +14,21 @@ import model.Books;
 
 @WebServlet("/books")
 public class BooksServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
 
     private static List<Books> booksList = new ArrayList<>();
     private static int idCounter = 1;
 
     @Override
     public void init() {
-        booksList.add(new Books(idCounter++, "Sách A", "Tác giả A", 50000, "linkA.jpg"));
-        booksList.add(new Books(idCounter++, "Sách B", "Tác giả B", 60000, "linkB.jpg"));
+    	//Dữ liệu giả định
+        booksList.add(new Books(idCounter++, "Sách A", "Tac gia A", 50000, "linkA.jpg"));
+        booksList.add(new Books(idCounter++, "Sách B", "Tac gia B", 60000, "linkB.jpg"));
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
+        
         if (action == null) {
             // Mặc định hiển thị list
             request.setAttribute("booksList", booksList);
@@ -40,24 +40,28 @@ public class BooksServlet extends HttpServlet {
             case "create":
                 request.getRequestDispatcher("form.jsp").forward(request, response);
                 break;
+                
             case "edit":
                 int idEdit = Integer.parseInt(request.getParameter("id"));
-                Books bEdit = findById(idEdit);
-                request.setAttribute("books", bEdit);
+                Books booksEdit = findById(idEdit);
+                request.setAttribute("books", booksEdit);
                 request.getRequestDispatcher("form.jsp").forward(request, response);
                 break;
+                
             case "detail":
                 int idDetail = Integer.parseInt(request.getParameter("id"));
-                Books bDetail = findById(idDetail);
-                request.setAttribute("books", bDetail);
+                Books booksDetail = findById(idDetail);
+                request.setAttribute("books", booksDetail);
                 request.getRequestDispatcher("detail.jsp").forward(request, response);
                 break;
+                
             case "delete":
                 int idDelete = Integer.parseInt(request.getParameter("id"));
-                Books bDelete = findById(idDelete);
-                if (bDelete != null) booksList.remove(bDelete);
-                response.sendRedirect("books"); // quay về danh sách
+                Books booksDelete = findById(idDelete);
+                if (booksDelete != null) booksList.remove(booksDelete);
+                response.sendRedirect("books");
                 break;
+                
             default:
                 request.setAttribute("booksList", booksList);
                 request.getRequestDispatcher("list.jsp").forward(request, response);
@@ -65,28 +69,29 @@ public class BooksServlet extends HttpServlet {
         }
     }
 
+    
+    //List
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String idStr = request.getParameter("id");
-        String title = request.getParameter("title");
+        String name = request.getParameter("name");
         String author = request.getParameter("author");
         int price = Integer.parseInt(request.getParameter("price"));
         String imagePath = request.getParameter("imagePath");
 
         if (idStr == null || idStr.isEmpty()) {
             // Thêm mới
-            Books newBook = new Books(idCounter++, title, author, price, imagePath);
+            Books newBook = new Books(idCounter++, name, author, price, imagePath);
             booksList.add(newBook);
         } else {
             // Cập nhật
             int id = Integer.parseInt(idStr);
-            Books existing = findById(id);
-            if (existing != null) {
-                existing.setTitle(title);
-                existing.setAuthor(author);
-                existing.setPrice(price);
-                existing.setImagePath(imagePath);
+            Books booksUpdate = findById(id);
+            if (booksUpdate != null) {
+                booksUpdate.setName(name);
+                booksUpdate.setAuthor(author);
+                booksUpdate.setPrice(price);
+                booksUpdate.setImagePath(imagePath);
             }
         }
         response.sendRedirect("books");

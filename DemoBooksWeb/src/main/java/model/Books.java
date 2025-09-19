@@ -2,7 +2,7 @@ package model;
 
 public class Books {
 	private int id;
-	private String title;
+	private String name;
 	private String author;
 	private int price;
 	private String imagePath;
@@ -13,9 +13,9 @@ public class Books {
 	}
 	
 	//Ham khoi tao co tham so
-	public Books (int id, String title, String author, int price, String imagePath) {
+	public Books (int id, String name, String author, int price, String imagePath) {
 		this.id = id;
-		this.title = title;
+		this.name = name;
 		this.author = author;
 		this.price = price;
 		this.imagePath = imagePath;
@@ -30,12 +30,12 @@ public class Books {
 		this.id = id;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getName() {
+		return name;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getAuthor() {

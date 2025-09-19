@@ -2,14 +2,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Chi tiết Sách</title>
+<title>Chi tiet Sach</title>
 </head>
 <body>
     <h2>${books.title}</h2>
-    <p>Tác giả: ${books.author}</p>
-    <p>Giá: ${books.price}</p>
-    <p>Ảnh sách: ${books.imagePath}</p>
+    <p>Tac gia: ${books.author}</p>
+    <p>Gia: ${books.price}</p>
+    <p>Hinh anh sach: ${books.imagePath}</p>
 
-    <a href="books">Quay lại danh sách Sách</a>
+    <a href="books">Quay lai danh sach Sach</a>
 </body>
 </html>
